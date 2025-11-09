@@ -1,0 +1,25 @@
+<h1>Available Trips</h1>
+
+{{#if trips}}
+  <ul class="trip-grid">
+  {{#each trips}}
+    <li class="trip-card">
+      {{#if cover}}
+        <img src="{{cover}}" alt="{{name}}" class="trip-cover" />
+      {{/if}}
+      <h2 class="trip-name">{{name}}</h2>
+      <p class="trip-summary">{{summary}}</p>
+      <dl class="trip-meta">
+        <div><dt>Code</dt><dd>{{code}}</dd></div>
+        <div><dt>Length</dt><dd>{{length}} days</dd></div>
+        <div><dt>Start</dt><dd>{{date start}}</dd></div>
+        <div><dt>Price</dt><dd>{{currency price}}</dd></div>
+        <div><dt>Rating</dt><dd>{{rating}} / 5</dd></div>
+      </dl>
+      <a class="btn" href="#">Book</a>
+    </li>
+  {{/each}}
+  </ul>
+{{else}}
+  <p>No trips available.</p>
+{{/if}}

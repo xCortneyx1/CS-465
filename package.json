@@ -1,0 +1,19 @@
+{
+  "name": "travlr-getaways",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Travlr Getaways public site (MVC + Handlebars)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
