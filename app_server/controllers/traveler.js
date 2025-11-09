@@ -2,47 +2,44 @@
 
 // In a later module this data comes from MongoDB;
 // For Module Two we render JSON-like objects via HBS.
-const sampleTrips = [
-  {
-    code: 'SE-BCN-7',
-    name: 'Sunny Escape — Barcelona',
-    length: 7,
-    start: '2025-06-01',
-    price: 1299.0,
-    rating: 4.6,
-    cover: '/images/trips/barcelona.jpg',
-    summary: 'Tapas, beaches, Gaudí architecture, and a day trip to Montserrat.'
-  },
-  {
-    code: 'AL-NYC-3',
-    name: 'City Lights — New York',
-    length: 3,
-    start: '2025-09-15',
-    price: 899.0,
-    rating: 4.4,
-    cover: '/images/trips/nyc.jpg',
-    summary: 'Broadway, skyline views, and world-class museums in a compact getaway.'
-  }
-];
+const fs = require('fs');
+const path = require('path');
 
-const home = (req, res) => {
-  res.render('home', {
-    title: 'Travlr Getaways',
-    hero: {
-      heading: 'Find your next escape.',
-      sub: 'Search trips by destination and budget.'
+// Helper function to load trips dynamically from JSON file
+const getTrips = () => {
+    try {
+        const dataPath = path.join(__dirname, '../../trips.json');
+        const data = fs.readFileSync(dataPath, 'utf8');
+        return JSON.parse(data);
+    } catch (err) {
+        console.error('Error reading trips.json:', err);
+        return []; // return empty array if something fails
     }
-  });
 };
 
+// Home page controller
+const home = (req, res) => {
+    res.render('home', {
+        title: 'Travlr Getaways',
+        hero: {
+            heading: 'Find your next escape.',
+            sub: 'Search trips by destination and budget.'
+        }
+    });
+};
+
+// Travel list page controller (dynamic)
 const travelList = (req, res) => {
-  res.render('travel-list', {
-    title: 'Trips',
-    trips: sampleTrips
-  });
+    const trips = getTrips(); // read JSON file
+    res.render('travel-list', {
+        title: 'Trips',
+        trips
+    });
 };
 
+// Export controller functions
 module.exports = {
-  home,
-  travelList
+    home,
+    travelList
 };
+
