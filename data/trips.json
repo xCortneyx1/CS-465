@@ -1,0 +1,32 @@
+[
+  {
+    "code": "SE-BCN-7",
+    "name": "Sunny Escape — Barcelona",
+    "length": "7 days",
+    "start": "2025-06-01",
+    "resort": "Barcelona Beach Resort",
+    "perPerson": "1299",
+    "image": "/images/trips/barcelona.jpg",
+    "description": "Tapas, beaches, Gaudí architecture, and a day trip to Montserrat."
+  },
+  {
+    "code": "AL-NYC-3",
+    "name": "City Lights — New York",
+    "length": "3 days",
+    "start": "2025-09-15",
+    "resort": "Midtown Skyline Hotel",
+    "perPerson": "899",
+    "image": "/images/trips/nyc.jpg",
+    "description": "Broadway, skyline views, and world-class museums in a compact getaway."
+  },
+  {
+    "code": "TR-TYO-5",
+    "name": "Tokyo Adventures — Japan",
+    "length": "5 days",
+    "start": "2025-10-10",
+    "resort": "Shinjuku Grand Tower",
+    "perPerson": "1899",
+    "image": "/images/trips/tokyo.jpg",
+    "description": "Experience Japan’s culture, technology, and cuisine in the heart of Tokyo."
+  }
+]
