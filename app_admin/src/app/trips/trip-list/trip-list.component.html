@@ -1,0 +1,19 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Admin – Trips</h2>
+    <button class="btn btn-primary" (click)="onAddTrip()">Add Trip</button>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">Loading trips...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let trip of trips">
+      <app-trip-card
+        [trip]="trip"
+        (edit)="onEditTrip($event)"
+        (delete)="onDeleteTrip($event)">
+      </app-trip-card>
+    </div>
+  </div>
+</div>

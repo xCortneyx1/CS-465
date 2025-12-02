@@ -1,19 +1,11 @@
 // app_server/controllers/traveler.js
 
-// In a later module this data comes from MongoDB;
-// For Module Two we render JSON-like objects via HBS.
-const fs = require('fs');
-const path = require('path');
-
-// Helper function to load trips dynamically from JSON file
-const getTrips = () => {
-    try {
-        const dataPath = path.join(__dirname, '../../trips.json');
-        const data = fs.readFileSync(dataPath, 'utf8');
-        return JSON.parse(data);
-    } catch (err) {
-        console.error('Error reading trips.json:', err);
-        return []; // return empty array if something fails
+// In Module 5, data comes from the REST API instead of a local JSON file.
+const tripsEndpoint = 'http://localhost:3000/api/trips';
+const options = {
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json'
     }
 };
 
@@ -22,24 +14,35 @@ const home = (req, res) => {
     res.render('home', {
         title: 'Travlr Getaways',
         hero: {
-            heading: 'Find your next escape.',
-            sub: 'Search trips by destination and budget.'
+            heading: 'Travlr Getaways',
+            sub: 'Your adventure starts here.'
         }
     });
 };
 
-// Travel list page controller (dynamic)
-const travelList = (req, res) => {
-    const trips = getTrips(); // read JSON file
-    res.render('travel-list', {
-        title: 'Trips',
-        trips
-    });
+// Travel list controller - now calls the API
+const travelList = async (req, res) => {
+    fetch(tripsEndpoint, options)
+        .then(apiRes => {
+            if (!apiRes.ok) {
+                throw new Error(`API request failed with status ${apiRes.status}`);
+            }
+            return apiRes.json();
+        })
+        .then(json => {
+            // console.log(json); // handy for debugging
+            res.render('travel-list', {
+                title: 'Trips',
+                trips: json
+            });
+        })
+        .catch(err => {
+            console.error('Error fetching trips from API:', err);
+            res.status(500).send(err.message);
+        });
 };
 
-// Export controller functions
 module.exports = {
     home,
     travelList
 };
-
