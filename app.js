@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const morgan = require('morgan');
+const cors = require('cors'); // enable CORS for Angular/admin
 
 // Initialize MongoDB/Mongoose connection
 require('./app_api/models/db');
@@ -19,6 +20,9 @@ app.use(morgan('dev'));
 // body parsing (for JSON if needed later)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// CORS (allow Angular admin SPA and other clients to call /api)
+app.use(cors());
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));

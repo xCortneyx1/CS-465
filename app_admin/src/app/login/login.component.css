@@ -1,0 +1,25 @@
+.login-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.btn {
+  margin-top: 0.5rem;
+}
+
+.error {
+  color: red;
+  margin-top: 0.75rem;
+}
